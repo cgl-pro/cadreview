@@ -1,50 +1,132 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
-  <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
-  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
-  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
-  <meta property="og:url" content="URL OF THE WEBSITE"/>
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/your_banner_image.png" />
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
-
-
-  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
-  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
-  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-  <title>CADReview: Automatically Reviewing CAD Programs with Error Detection and Correction</title>
-  <link rel="icon" type="image/x-icon" href="static/images/AutoCAD.svg">
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-  rel="stylesheet">
-
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <meta name="description" content="DESCRIPTION META TAG">
+    <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
+    <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
+    <meta property="og:url" content="URL OF THE WEBSITE"/>
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+    <meta property="og:image" content="static/image/your_banner_image.png" />
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+  
+  
+    <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+    <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+    <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Keywords for your paper to be indexed by-->
+    <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+    <title>CADReview: Automatically Reviewing CAD Programs with Error Detection and Correction</title>
+    <link rel="icon" type="image/x-icon" href="static/images/recad_icon.png">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+    rel="stylesheet">
+  
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/bulma-slider.min.js"></script>
+    <script src="static/js/index.js"></script>
+  </head>
+  <body>
+  <style>
+    .expandable-card .card-text-container {
+      max-height: 200px;
+      overflow-y: hidden;
+      position: relative;
+    }
+  
+    .expandable-card.expanded .card-text-container {
+      max-height: none;
+    }
+  
+    .expand-btn {
+      position: relative;
+      display: none;
+      background-color: rgba(255, 255, 255, 0.8);
+      /* margin-top: -20px; */
+      /* justify-content: center; */
+      color: #510c75;
+      border-color: transparent;
+    }
+  
+    .expand-btn:hover {
+      background-color: rgba(200, 200, 200, 0.8);
+      text-decoration: none;
+      border-color: transparent;
+      color: #510c75;
+    }
+  
+    .expand-btn:focus {
+      outline: none;
+      text-decoration: none;
+    }
+  
+    .expandable-card:not(.expanded) .card-text-container:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 90px;
+      background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 1));
+    }
+  
+    .expandable-card:not(.expanded) .expand-btn {
+      margin-top: -40px;
+    }
+  
+    .card-body {
+      padding-bottom: 5px;
+    }
+  
+    .vertical-flex-layout {
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+  
+    .figure-img {
+      max-width: 100%;
+      height: auto;
+    }
+  
+    .adjustable-font-size {
+      font-size: calc(0.5rem + 2vw);
+    }
+  
+    .chat-history {
+      flex-grow: 1;
+      overflow-y: auto;
+      /* overflow-x: hidden; */
+      padding: 5px;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+  
+    #gradio pre {
+      background-color: transparent;
+    }
+  </style>
 
 
   <section class="hero">
@@ -52,38 +134,43 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-2 publication-title">CADReview: Automatically Reviewing CAD Programs with Error Detection and Correction</h1>
+            <h1 class="title is-1 publication-title">CADReview</h1>
+            <h2 class="subtitle is-3 publication-subtitle">Automatically Reviewing CAD Programs with<br>Error Detection and Correction</h2>
+            <h5 class="subtitle is-5 publication-awards">ACL Main Conference 2025 🌟</h5>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="https://github.com/Gary-code" target="_blank">Jiali Chen</a><sup>*</sup>,</span>
+                <a href="https://gary-code.github.io/" target="_blank">Jiali Chen<sup>1,*</sup></a>,</span>
                   <span class="author-block">
-                <a href="" target="_blank">Xusen Hei</a><sup>*</sup>,</span>
+                <a href="https://github.com/black1948" target="_blank">Xusen Hei<sup>1,*</sup></a>,</span>
                   <span class="author-block">
+                    <a href="https://github.com/Popping007" target="_blank">HongFei Liu<sup>1</sup></a>,</span>
                   <span class="author-block">
-                    <a href="" target="_blank">HongFei Liu</a>,</span>
+                    <a href="https://github.com/wyclike/" target="_blank">Yuancheng Wei<sup>1</sup></a>,</span>
                   <span class="author-block">
-                    <a href="" target="_blank">Yuancheng Wei</a>,</span>
+                    <a href="https://zkdeng.org/" target="_blank">Zikun Deng<sup>1</sup></a>,</span>
                   <span class="author-block">
-                    <a href="" target="_blank">Zikun Deng</a>,</span>
+                    <a href="https://openreview.net/profile?id=~Jiayuan_Xie1" target="_blank">Jiayuan Xie<sup>2</sup></a>,</span>
                   <span class="author-block">
-                    <a href="" target="_blank">Jiayuan Xie</a>,</span>
+                    <a href="https://scholar.google.com.hk/citations?hl=zh-CN&user=ej3Nb5wAAAAJ&view_op=list_works&sortby=pubdate" target="_blank">Yi Cai<sup>1</sup></a>,</span>
                   <span class="author-block">
-                    <a href="" target="_blank">Yi Cai</a>,</span>
-
-                  <span class="author-block">
-                    <a href="" target="_blank">Li Qing</a>
+                    <a href="https://www.polyu.edu.hk/comp/people/academic-staff/prof-li-qing/" target="_blank">Li Qing<sup>2</sup></a>
                   </span>
-                </span></div>
+                </span>
+              </div>
 
                 <div class="is-size-5 publication-authors">
-                  <span class="author-block">South China University of Technology<br>ACL 2025<br></span>
-                  <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
+                  <span class="author-block"><sup>1</sup>South China University of Technology</span><br>
+                  <span class="author-block"><sup>2</sup>The Hong Kong Polytechnic University</span><br>
+                </div>
+
+                <div class="is-size-6 publication-authors">
+                  <span class="eql-cntrb"><small><sup>*</sup>Equal Contribution</small></span>
                 </div>
 
                 <div class="column has-text-centered">
                   <div class="publication-links">
-                         <!-- Arxiv PDF link -->
+                      <!-- Arxiv PDF link -->
                       <span class="link-block">
                         <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
                         class="external-link button is-normal is-rounded is-dark">
@@ -93,9 +180,18 @@
                         <span>Paper</span>
                       </a>
                     </span>
-
-                    <!-- Supplementary PDF link -->
+                    <!-- ArXiv abstract Link -->
                     <span class="link-block">
+                      <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                      </span>
+                      <span>arXiv</span>
+                    </a>
+                  </span>
+                    <!-- Supplementary PDF link -->
+                    <!-- <span class="link-block">
                       <a href="static/pdfs/supplementary_material.pdf" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
@@ -103,11 +199,11 @@
                       </span>
                       <span>Supplementary</span>
                     </a>
-                  </span>
+                  </span> -->
 
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
+                    <a href="https://github.com/Gary-code/CADReview" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -115,17 +211,16 @@
                     <span>Code</span>
                   </a>
                 </span>
-
-                <!-- ArXiv abstract Link -->
+                <!-- Dataset Link. -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
+                  <a href="https://huggingface.co/datasets/CADReview"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon" style="display: inline-flex; align-items: center;">
+                        <p style="font-size:18px; margin: 0; line-height: 1;">🤗</p>
+                    </span>
+                    <span>Dataset</span>
+                  </a>
+                </span>
             </div>
           </div>
         </div>
@@ -133,32 +228,52 @@
     </div>
   </div>
 </section>
+<section>
+  <div style="background: linear-gradient(to right, #51e7f5, #f4a930);
+              padding: 1rem;
+              border-radius: 5px;
+              margin-bottom: 1em;
+              text-align: center;">
+    <p style="font-weight: bold;
+              font-size: 22px;
+              width: 80%;
+              margin: 0 auto;
+              text-align: center;">
+      TLDR: CADReview benchmarks MLLMs' ability to correct CAD programs with refernece images.
+    </p>
+  </div>
+</section>
 
 
-<!-- Teaser video-->
+<!-- Teaser Show-->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <p>
-        <img src="static/images/intro_case.png" alt="Introduction Case" class="blend-img-background center-image" style="max-width: 70%; height: auto; display: block; margin: 0 auto;">
+        <img src="static/images/intro_case.png" alt="Introduction Case" class="blend-img-background center-image" style="max-width: 65%; height: auto; display: block; margin: 0 auto;">
       </p>
-      <h2 class="subtitle has-text-centered">
-        Figure 1: Overview of different ways (i.e., designer, GPT-4o and our ReCAD) to CAD review. The green and red denote correct and incorrect prediction, respectively. 
+      <h2 class="has-text-centered is-size-5">
+        <p>Overview of different ways (i.e., designer, GPT-4o and our ReCAD) to CAD review. </p> 
       </h2>
     </div>
   </div>
 </section>
-<!-- End teaser video -->
+<!-- End Teaser video -->
 
 <!-- Paper abstract -->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+      <div class="column is-six-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Computer-aided design (CAD) is crucial in prototyping 3D objects through geometric instructions (i.e., CAD programs).In practical design workflows, designers often engage in time-consuming reviews and refinements of these prototypes by comparing them with reference images.To bridge this gap, we introduce the CAD review task to automatically detect and correct potential errors, ensuring consistency between the constructed 3D objects and reference images. However, recent advanced multimodal large language models (MLLMs) struggle to recognize multiple geometric components and perform spatial geometric operations within the CAD program, leading to inaccurate reviews. In this paper, we propose the CAD program repairer (ReCAD) framework to effectively detect program errors and provide helpful feedback on error correction. Additionally, we create a dataset, CADReview, consisting of over 20K program-image pairs, with diverse errors for the CAD review task. Extensive experiments demonstrate that our ReCAD significantly outperforms existing MLLMs, which shows great potential in design applications.
+            Computer-aided design (CAD) is crucial in prototyping 3D objects through geometric instructions (i.e., CAD programs).
+            In practical design workflows, designers often engage in time-consuming reviews and refinements of these prototypes by comparing them with reference images.
+            To bridge this gap, we introduce the CAD review task to automatically detect and correct potential errors, ensuring consistency between the constructed 3D objects and reference images. 
+            However, recent advanced multimodal large language models (MLLMs) struggle to recognize multiple geometric components and perform spatial geometric operations within the CAD program, leading to inaccurate reviews. 
+            In this paper, we propose the CAD program repairer (ReCAD) framework to effectively detect program errors and provide helpful feedback on error correction. Additionally, we create a dataset, CADReview, consisting of over 20K program-image pairs, with diverse errors for the CAD review task. 
+            Extensive experiments demonstrate that our ReCAD significantly outperforms existing MLLMs, which shows great potential in design applications.
           </p>
         </div>
       </div>
@@ -168,114 +283,180 @@
 <!-- End paper abstract -->
 
 
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/app_case.png" alt="Appendix Case"/>
-        <h2 class="subtitle has-text-centered">
-          Demonstration of various 3D objects from our CADReview dataset.
-        </h2>
+<!-- Dataset Overview -->
+<section class="section hero teaser">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-six-fifths">
+        <h2 class="title is-3">CADReview Dataset</h2>
+        <div class="content has-text-justified">
+        </div>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/app_case.png" alt="Appendix Case"/>
-        <h2 class="subtitle has-text-centered">
-          Demonstration of various 3D objects from our CADReview dataset.
-        </h2>
+    </div>
+  </div>
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+
+          <p class="mb-3">
+            The <strong>CADReview</strong> dataset is introduced to support the CAD review task—automatically detecting and correcting errors in CAD programs based on reference images. This task is fundamentally challenging for current multimodal large language models (MLLMs) due to the intricate alignment required between code and 3D geometry. The major challenges include:
+          </p>
+
+          <ul class="mb-4">
+            <li><strong>Component-level reasoning:</strong> 3D objects consist of multiple geometric components, each mapped to specific code blocks that must be interpreted accurately.</li>
+            <li><strong>Internal structure analysis:</strong> Some errors occur in visually hidden internal components, demanding programmatic analysis rather than visual inspection alone.</li>
+            <li><strong>Precise code transformation:</strong> Correcting errors requires geometric reasoning and spatial transformations reflected directly in the code (e.g., translation, rotation).</li>
+          </ul>
+
+          <p class="mb-3">
+            To facilitate progress in this domain, we construct the CADReview dataset with the following characteristics:
+          </p>
+
+          <ul class="mb-4">
+            <li><strong>Large-scale and diverse:</strong> Comprising <strong>20K program-image pairs</strong>, the dataset includes both human-made and machine-generated CAD programs with realistic and diverse 3D object structures.</li>
+            <li><strong>Error-rich examples:</strong> Each program may contain one or more of <strong>eight distinct error types</strong> (e.g., logic, primitive, position, constant), covering real-world failure modes in CAD design workflows.</li>
+            <li><strong>High geometric complexity:</strong> Human-made programs feature advanced constructs such as macros, control flows, and boolean operations.</li>
+            <li><strong>Multiview reference images:</strong> Every sample is paired with three rendered design drawings from varied viewpoints to enhance visual alignment and support complex error detection.</li>
+          </ul>
+
+          <p class="mb-3">
+            Overall, CADReview serves as a comprehensive benchmark for evaluating AI systems on real-world CAD program review tasks, emphasizing both accuracy and spatial reasoning.
+          </p>
+        </div>
       </div>
-    
+    </div>
+  </div>
+  <div class="container is-max-desktop">
+    <div id="results-carousel" class="carousel results-carousel">
+      <div class="item" style="display: flex; justify-content: center; align-items: center; flex-direction: column; min-height: 500px;">
+        <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+          <img src="static/images/app_case.png" alt="Dataset Overview" style="width: 95%; height: auto; object-fit: contain;"/>
+        </div>
+        <h5 class="is-size-6 has-text-centered mt-4">
+          Overview of diverse 3D objects in our CADReview dataset.
+        </h5>
+      </div>
+      <div class="item" style="display: flex; justify-content: center; align-items: center; flex-direction: column; min-height: 500px;">
+        <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+          <img src="static/images/app_pro_case.jpg" alt="Dataset Examples" style="width: 95%; height: auto; object-fit: contain;"/>
+        </div>
+        <h5 class="is-size-6 has-text-centered mt-4">
+          Human-made and machine-made CAD programs from our CADReview dataset.
+        </h5>
+      </div>
+      <div class="item" style="display: flex; justify-content: center; align-items: center; flex-direction: column; min-height: 500px;">
+        <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+          <img src="static/images/cad_error_type.png" alt="Error Types" style="width: 95%; height: auto; object-fit: contain;"/>
+        </div>
+        <h5 class="is-size-6 has-text-centered mt-4">
+          Each types of errors in CAD programs.
+        </h5>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="columns is-centered has-text-centered">
+      <h4 class="title is-4">CADReview Annotation Pipeline</h4>
+    </div>
+    <div class="columns is-vcentered mt-5">
+      <div class="column is-6">
+        <div class="content" style="padding-left: 2rem;">
+          <h5 class="title is-5 mb-5">Annotation Process:</h5>
+          <ul style="list-style-type: none; padding-left: 0;">
+            <li class="mb-5">
+              <span class="icon-text">
+                <span class="icon has-text-primary">
+                  <i class="fas fa-circle"></i>
+                </span>
+                <span class="is-size-6">Collecting Program-Image Pairs</span>
+              </span>
+            </li>
+            <li class="mb-5">
+              <span class="icon-text">
+                <span class="icon has-text-primary">
+                  <i class="fas fa-circle"></i>
+                </span>
+                <span class="is-size-6">Creating Error on CAD Programs</span>
+              </span>
+            </li>
+            <li class="mb-5">
+              <span class="icon-text">
+                <span class="icon has-text-primary">
+                  <i class="fas fa-circle"></i>
+                </span>
+                <span class="is-size-6">Annotating Feedback on CAD Program</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="column is-6">
+        <img id="Annotation" width="100%" src="static/images/dataset_cons.jpg" alt="CADReview Annotation">
       </div>
     </div>
   </div>
 </section>
-<!-- End image carousel -->
 
-
-
-
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<section class="section">
+  <!-- ReCAD Framework. -->
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-six-fifths">
+      <h2 class="title is-3">ReCAD Framework</h2>
+    </div>
+  </div>
+  
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <div class="content has-text-justified">
+          <p>
+            To tackle the CAD review task—automatically detecting and correcting errors in CAD programs based on reference images—we propose <strong>ReCAD</strong>, a multimodal large language model (MLLM)-based framework.
+            ReCAD consists of two key components: a <strong>feedback generator</strong> and a <strong>code editor</strong>, both built upon a shared MLLM backbone.
+          </p>
+          <p>
+            The feedback generator first aligns geometric components in the 3D object with their corresponding code blocks, then produces textual feedback identifying erroneous blocks and describing the error types.
+            This is enabled by a <strong>Geometric Component Recognition (GCR)</strong> mechanism, which enhances the model's ability to reason about both visual and symbolic geometry.
+          </p>
+          <p>
+            The code editor takes the generated feedback as guidance and performs program-level geometric transformations (e.g., translation, rotation) to correct the erroneous CAD code.
+            To support this, we introduce a <strong>Spatial Geometric Operation (SGO)</strong> mechanism that helps the model learn fine-grained spatial manipulation within CAD programs.
+          </p>
+          <p>
+            Each module in ReCAD integrates a vision encoder, a large language model, and a vision-language projector. 
+            We apply a two-stage supervised fine-tuning process, followed by reinforcement learning with task-specific reward functions based on <em>error diagnostics</em> and <em>visual similarity</em> between the predicted and reference 3D renderings.
+          </p>
+          <br>
+          <div style="text-align: center;">
+            <img id="pipeline_framework" width="100%" src="./static/images/recad_framework.png" alt="Detailed ReCAD Architecture">
+          </div>
+          <br>
+          <br>
+          <p>
+            Our experiments show that ReCAD significantly outperforms both commercial and open-source MLLMs on the CADReview dataset, especially in accurately aligning CAD code with visual components and generating high-quality corrections.
+          </p>
+          <div style="text-align: center;">
+            <img id="experiment" width="100%" src="./static/images/experiment.png" alt="Experiment Results">
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End youtube video -->
 
 
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End video carousel -->
-
-
-
-
-
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
-      </div>
-    </div>
-  </section>
-<!--End paper poster -->
 
 
 <!--BibTex citation -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
+      <pre><code>
+        @article{chen2025cadreview,
+        title={CADReview: Automatically Reviewing CAD Programs with Error Detection and Correction},
+        author={Jiali Chen, Xusen Hei, HongFei Liu, Yuancheng Wei, Zikun Deng, Jiayuan Xie, Yi Cai, Li Qing},
+        year={2025},
+        }</code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
@@ -288,7 +469,7 @@
         <div class="content">
 
           <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
             You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>

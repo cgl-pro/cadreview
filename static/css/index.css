@@ -31,10 +31,17 @@ body {
 .publication-title {
 }
 
+.title + .publication-authors,
+.subtitle + .publication-authors {
+    margin-top: -1.25rem;
+}
+
+
 .publication-banner {
   max-height: parent;
 
 }
+
 
 .publication-banner video {
   position: relative;
@@ -63,7 +70,7 @@ body {
 
 .publication-awards {
     color: #ff3860;
-    width: fit-content;
+    /* width: fit-content; */
     font-weight: bolder;
 }
 
